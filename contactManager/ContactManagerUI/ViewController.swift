@@ -8,14 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var contactsTableView: UITableView!
-
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
         makeRandomContact(count: 1000)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        self.navigationItem.title = "연락처"
     }
 
     private func makeRandomContact(count: Int) {
