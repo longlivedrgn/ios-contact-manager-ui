@@ -16,8 +16,13 @@ class ViewController: UIViewController {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
         makeRandomContact(count: 1000)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.rightSideButtonTapped(_:)))
         self.navigationItem.title = "연락처"
+    }
+
+    @objc func rightSideButtonTapped(_ sender: UIBarButtonItem!) {
+        let newViewController = ActionViewController()
+        present(newViewController, animated: true)
     }
 
     private func makeRandomContact(count: Int) {
