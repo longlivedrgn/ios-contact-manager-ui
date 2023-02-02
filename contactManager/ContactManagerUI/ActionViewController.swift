@@ -25,33 +25,59 @@ class ActionViewController: UIViewController {
     var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "이름"
+        label.textAlignment = .center
         return label
     }()
     
     var ageLabel: UILabel = {
         let label = UILabel()
         label.text = "나이"
+        label.textAlignment = .center
         return label
     }()
     
     var phoneNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "연락처"
+        label.textAlignment = .center
         return label
     }()
     
     var nameTextField: UITextField = {
         let textField = UITextField()
+        // textField 테두리 설정
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.cornerRadius = 5.0
+
+        // textField placeholder
+        textField.placeholder = "이름 입력"
+
+        // textField 왼쪽 여백 설정
+        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
+        textField.leftViewMode = .always
         return textField
     }()
     
     var ageTextField: UITextField = {
         let textField = UITextField()
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.cornerRadius = 5.0
+        textField.placeholder = "나이 입력"
+        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
+        textField.leftViewMode = .always
         return textField
     }()
     
     var phoneNumberTextField: UITextField = {
         let textField = UITextField()
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.cornerRadius = 5.0
+        textField.placeholder = "전화번호 입력"
+        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
+        textField.leftViewMode = .always
         return textField
     }()
     
@@ -133,7 +159,23 @@ class ActionViewController: UIViewController {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo:safeArea.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+        ])
+
+        // TextField stack 내에서의 비율 설정
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8)
+        ])
+
+        ageTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ageTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8)
+        ])
+
+        phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            phoneNumberTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8)
         ])
     }
     
