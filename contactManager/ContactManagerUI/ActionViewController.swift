@@ -7,15 +7,21 @@
 
 import UIKit
 
+protocol ActionViewDelegate {
+    func reload()
+}
+
 class ActionViewController: UIViewController {
 
     // MARK: - Properties
+    
+    var delegate: ActionViewDelegate?
     
     var  navigationBar: UINavigationBar = {
         let navigationBar = UINavigationBar()
         let navigationItem = UINavigationItem(title: "새 연락처")
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonPressed))
-        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: #selector(saveButtonPressed))
         navigationItem.leftBarButtonItem = cancelItem
         navigationItem.rightBarButtonItem = saveItem
         navigationBar.setItems([navigationItem], animated: false)
@@ -23,6 +29,11 @@ class ActionViewController: UIViewController {
     }()
 
     @objc func cancelButtonPressed() {
+        dismiss(animated: true)
+    }
+    
+    @objc func saveButtonPressed() {
+        delegate?.reload()
         dismiss(animated: true)
     }
     

@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 
     @objc func rightSideButtonTapped(_ sender: UIBarButtonItem!) {
         let newViewController = ActionViewController()
+        newViewController.delegate = self
         present(newViewController, animated: true)
     }
 
@@ -65,5 +66,11 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ViewController: ActionViewDelegate {
+    func reload() {
+        contactsTableView.reloadData()
     }
 }
