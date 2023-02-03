@@ -8,19 +8,23 @@
 import UIKit
 
 class ActionViewController: UIViewController {
-    
+
     // MARK: - Properties
     
     var  navigationBar: UINavigationBar = {
         let navigationBar = UINavigationBar()
         let navigationItem = UINavigationItem(title: "새 연락처")
-        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonPressed))
         let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
         navigationItem.leftBarButtonItem = cancelItem
         navigationItem.rightBarButtonItem = saveItem
         navigationBar.setItems([navigationItem], animated: false)
         return navigationBar
     }()
+
+    @objc func cancelButtonPressed() {
+        dismiss(animated: true)
+    }
     
     var nameLabel: UILabel = {
         let label = UILabel()
@@ -47,7 +51,7 @@ class ActionViewController: UIViewController {
         let textField = UITextField()
         // textField 테두리 설정
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.cornerRadius = 5.0
 
         // textField placeholder
@@ -56,28 +60,31 @@ class ActionViewController: UIViewController {
         // textField 왼쪽 여백 설정
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
         textField.leftViewMode = .always
+        textField.keyboardType = .default
         return textField
     }()
     
     var ageTextField: UITextField = {
         let textField = UITextField()
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.cornerRadius = 5.0
         textField.placeholder = "나이 입력"
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
         textField.leftViewMode = .always
+        textField.keyboardType = .default
         return textField
     }()
     
     var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.cornerRadius = 5.0
         textField.placeholder = "전화번호 입력"
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
         textField.leftViewMode = .always
+        textField.keyboardType = .default
         return textField
     }()
     
