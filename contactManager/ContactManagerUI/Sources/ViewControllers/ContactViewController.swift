@@ -20,6 +20,7 @@ class ContactViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeRandomContact(with: 10)
         
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
@@ -68,6 +69,14 @@ extension ContactViewController: UITableViewDataSource {
 
 extension ContactViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        contacts.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
 }
 
 extension ContactViewController: AddContactViewDelegate {
