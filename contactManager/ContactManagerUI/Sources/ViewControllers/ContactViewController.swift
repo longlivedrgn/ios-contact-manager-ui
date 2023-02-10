@@ -24,7 +24,7 @@ class ContactViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeRandomContact(with: 1000)
+        makeRandomContact(with: 10)
         
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
@@ -55,11 +55,17 @@ extension ContactViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIndentifier = "ContactCell"
 
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath)
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIndentifier)
-        cell.accessoryType = .disclosureIndicator
-        cell.contentConfiguration = configure(cell: cell, at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
         
+        if isFiltering {
+            cell.contactNameValue.text = "\(filterredContacts[indexPath.row].name)"
+            cell.contactAgeValue.text = "\(filterredContacts[indexPath.row].age)"
+            cell.contactPhoneNumberValue.text = "\(filterredContacts[indexPath.row].phoneNumber)"
+        } else {
+            cell.contactNameValue.text = "\(contacts[indexPath.row].name)"
+            cell.contactAgeValue.text = "\(contacts[indexPath.row].age)"
+            cell.contactPhoneNumberValue.text = "\(contacts[indexPath.row].phoneNumber)"
+        }
         return cell
     }
     
@@ -83,6 +89,10 @@ extension ContactViewController: UITableViewDataSource {
 }
 
 extension ContactViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 84
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
