@@ -60,6 +60,7 @@ final class AddContactViewController: UIViewController {
     
     private var nameTextField: UITextField = {
         let textField = UITextField()
+        let leftPaddingView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
         
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -67,7 +68,7 @@ final class AddContactViewController: UIViewController {
         
         textField.placeholder = "이름 입력"
         
-        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 8.0, height: 0.0))
+        textField.leftView = leftPaddingView
         textField.leftViewMode = .always
         
         return textField
