@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactViewController: UIViewController {
+final class ContactViewController: UIViewController {
 
     @IBOutlet private weak var contactsTableView: UITableView!
 

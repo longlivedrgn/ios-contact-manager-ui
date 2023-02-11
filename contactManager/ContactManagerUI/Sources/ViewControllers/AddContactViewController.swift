@@ -11,7 +11,7 @@ protocol AddContactViewDelegate {
     func reloadTableView()
 }
 
-class AddContactViewController: UIViewController {
+final class AddContactViewController: UIViewController {
     
     // MARK: - Properties
     
