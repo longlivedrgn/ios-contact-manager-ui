@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol AddContactViewDelegate {
+protocol AddContactViewDelegate: AnyObject {
     func reloadTableView()
 }
 
@@ -15,7 +15,7 @@ final class AddContactViewController: UIViewController {
     
     // MARK: - Properties
     
-    var delegate: AddContactViewDelegate?
+    weak var delegate: AddContactViewDelegate?
     
     private var newContactNavigationBar: UINavigationBar = {
         let navigationBar = UINavigationBar()
